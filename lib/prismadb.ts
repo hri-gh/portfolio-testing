@@ -32,3 +32,5 @@ const adapter = new PrismaLibSQL({
   authToken: process.env.TURSO_AUTH_TOKEN,
 })
 const prismadb = new PrismaClient({ adapter })
+
+export default prismadb;
