@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.5.3",
-    "@auth/prisma-adapter": "^2.5.3",
+    "@auth/prisma-adapter": "^2.10.0",
     "@hookform/resolvers": "^3.3.4",
     "@libsql/client": "^0.15.10",
     "@prisma/adapter-libsql": "^6.13.0",
