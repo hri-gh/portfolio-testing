@@ -1,0 +1,161 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  username String  @unique
+  email    String  @unique
+  password String
+  imageUrl String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model AboutMe {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  location String
+  bio      String
+
+  aboutMeHeader      String
+  aboutMeDescription String
+
+  schools  String
+  collages String
+
+  overview       String
+  overviewHeader String
+
+  learningJourney       String
+  learningJourneyHeader String
+
+  linkedinUrl    String
+  githubUrl      String
+  whatsappUrl    String
+  instagramUrl   String
+  facebookUrl    String
+  primaryGmail   String
+  secondaryGmail String
+  mobileNumber   String
+
+  anonymousMessageUrl String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("about_me")
+}
+
+model Project {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  images        Image[] // Relation to Image model
+  projectName   String
+  technologies  String
+  aboutProject  String
+  liveDemoLink  String
+  websiteLink   String
+  githubLink    String
+  gitlabLink    String
+  bitbucketLink String
+  projectType   String
+
+  features ProjectFeature[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("projects")
+}
+
+model ProjectFeature {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId String  @db.ObjectId
+
+  featureTitle       String
+  featureDescription String
+  featureImage       String
+  featureVideo       String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("project_features")
+}
+
+model Skill {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  imageUrl String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("skills")
+}
+
+model Certificate {
+  id              String  @id @default(auto()) @map("_id") @db.ObjectId
+  provider        String
+  title           String
+  imageUrl        String
+  providerLogoUrl String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("certificates")
+}
+
+model PublicProfile {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  imageUrl          String
+  publicProfileName String
+  publicProfileLink String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("public_profiles")
+}
+
+model Badge {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  imageUrl     String
+  platformName String
+  platformLink String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("badges")
+}
+
+model Image {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String  @db.ObjectId // Foreign Key to Project
+  url       String // URL of the image
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId])
+  @@map("images")
+}

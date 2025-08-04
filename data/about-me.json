@@ -1,0 +1,21 @@
+{
+    "name": "John Doe..",
+    "location": "New York, USA",
+    "bio": "Software Developer",
+    "aboutMeHeader": "About Me",
+    "aboutMeDescription": "I have been working in software development for over 5 years...",
+    "schools": "XYZ High School",
+    "collages": "ABC University",
+    "overview": "My Professional Overview",
+    "overviewHeader": "Overview",
+    "learningJourney": "My learning journey has been filled with...",
+    "learningJourneyHeader": "Learning Journey",
+    "linkedinUrl": "https://www.linkedin.com/in/johndoe",
+    "githubUrl": "https://github.com/johndoe",
+    "whatsappUrl": "https://wa.me/1234567890",
+    "instagramUrl": "https://www.instagram.com/johndoe",
+    "facebookUrl": "https://www.facebook.com/johndoe",
+    "primaryGmail": "john.doe@gmail.com",
+    "secondaryGmail": "johndoe@outlook.com",
+    "mobileNumber": "+91 9382020441"
+}
